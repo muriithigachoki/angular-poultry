@@ -1,0 +1,69 @@
+<mat-toolbar
+  color="primary"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <span>
+    <button mat-button routerLink="/products">Shop Now</button>
+  </span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button *ngIf="isAuthenticated" routerLink="/cart">Cart</button>
+    <button mat-button *ngIf="isAuthenticated" routerLink="/day-old-chick">
+      Book Day old Chicks
+    </button>
+  </div>
+
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button
+      mat-button
+      (click)="navigateToMyOrders()"
+      *ngIf="isAuthenticated && isAdminUser"
+    >
+      My Orders
+    </button>
+    <button *ngIf="isAuthenticated" mat-button routerLink="/farms">
+      Farms
+    </button>
+    <button *ngIf="isAdminUser" mat-button routerLink="/user">Users</button>
+    <button mat-button routerLink="/login" *ngIf="!isAuthenticated">
+      Login
+    </button>
+    <button mat-button (click)="logout()" *ngIf="isAuthenticated">
+      Logout
+    </button>
+  </div>
+
+  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+  <ul>
+    <li *ngIf="isAdminUser">
+      <button mat-menu-item routerLink="/user">Users</button>
+    </li>
+    <li>
+      <button mat-button routerLink="/cart">Cart</button>
+    </li>
+    <li>
+      <button mat-button (click)="navigateToMyOrders()">My Orders</button>
+    </li>
+    <li>
+      <button mat-button routerLink="/farms">farm records</button>
+    </li>
+    <li *ngIf="!isAuthenticated">
+      <button mat-menu-item routerLink="/login">Login</button>
+    </li>
+    <li *ngIf="isAuthenticated">
+      <button mat-button (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</mat-menu>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Book Day Old Chicks</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      class="example-form"
+      [formGroup]="chicksOrderForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="firstName" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label> Last Name </mat-label>
+        <input matInput formControlName="lastName" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>location</mat-label>
+        <input matInput formControlName="location" />
+      </mat-form-field>
+      <mat-checkbox formControlName="broilers">Broilers</mat-checkbox>
+      <mat-checkbox formControlName="kenbros">Kenbros</mat-checkbox>
+      <mat-checkbox formControlName="layers">Layers</mat-checkbox>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Number Of Birds</mat-label>
+        <input matInput formControlName="numberOfBirds" />
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Message</mat-label>
+        <input matInput formControlName="message" />
+      </mat-form-field>
+
+      <div><button mat-raised-button color="accent">Save</button></div>
+    </form>
+  </mat-card-content>
+</mat-card>

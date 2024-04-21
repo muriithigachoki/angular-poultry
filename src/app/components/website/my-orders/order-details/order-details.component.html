@@ -1,0 +1,24 @@
+<table class="table">
+    <thead>
+        <th>ID</th>
+        <th>PRODUCT</th>
+        <th>QUANTITY</th>
+        <th>PRICE</th>
+        <th>TOTAL PRICE</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of orderDetails">
+            <td class="col">{{item.id}}</td>
+            <td class="col">{{item.name}}</td>
+            <td class="col"> {{ item.quantity}} </td>
+            <td class="col"> {{ item.price}} </td>
+            <td class="col"> {{ item.total_price}} </td>
+            
+        </tr>
+        <tr>
+            <td colspan="3"></td>
+            <td ><a>total products price : </a></td>
+            <td> {{totalProductsPrice}}</td>
+        </tr>
+    </tbody>
+</table>

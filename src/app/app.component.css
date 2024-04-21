@@ -1,0 +1,14 @@
+
+mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+.content {
+    margin-top: 70px;
+    /* Adjust this value to prevent content from being hidden behind the navbar */
+}

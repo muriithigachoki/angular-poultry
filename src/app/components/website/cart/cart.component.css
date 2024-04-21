@@ -1,0 +1,25 @@
+img{
+    width: 100px;
+    border-radius: 100px;
+    backface-visibility: visible;
+}
+
+mat-card{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+
+
+.checkout-button>a{    
+    margin-left: 20px;
+    position: relative; 
+    margin-top: 30px;
+    margin-right: 20px;
+  }
+  .total-price >button{
+    margin-left: 20px;
+    position: relative; 
+    margin-top: 30px;
+    margin-right: 20px;
+  }

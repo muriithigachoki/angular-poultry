@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Add Incomes</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      class="example-form"
+      [formGroup]="expensesForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <mat-form-field class="example-full-width">
+        <mat-label>Item</mat-label>
+        <mat-select formControlName="item">
+          <mat-option
+            *ngFor="let option of sourceOptions"
+            [value]="option.value"
+          >
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="expensesForm.get('source')?.errors?.['required']">
+          Item is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Date</mat-label>
+        <input matInput formControlName="date" />
+        <mat-error *ngIf="expensesForm.get('date')?.errors?.['required']">
+          Date is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Amount </mat-label>
+        <input matInput formControlName="amount" />
+        <mat-error *ngIf="expensesForm.get('amount')?.errors?.['required']">
+          Amount is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Descriotion</mat-label>
+        <input matInput formControlName="description" />
+        <mat-error
+          *ngIf="expensesForm.get('description')?.errors?.['required']"
+        >
+          Descriotion is required
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="accent">Add</button> |
+        <button mat-raised-button routerLink="/expenses" color="accent">
+          Back Expences
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

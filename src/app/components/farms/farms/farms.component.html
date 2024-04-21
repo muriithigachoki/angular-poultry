@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-lg-3">
+    <mat-card>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item class="bg-primary">CATEGORIES</mat-list-item>
+          <mat-list-item *ngFor="let farm of farmlist">
+            <a
+              [title]="farm.farm_name + ' details'"
+              matLine
+              (click)="showFarmDetails(farm)"
+              >{{ farm.farm_name }}</a
+            >
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="col-lg-12">
+      <mat-toolbar
+        color="primary"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <a mat-raised-button (click)="addFarm('')" color="accent"> Add Farm</a>
+        <a
+          mat-raised-button
+          (click)="UpdateFarm(selectedFarm.id)"
+          color="accent"
+          >Update Farm</a
+        >
+      </mat-toolbar>
+    </div>
+    <mat-card *ngIf="selectedFarm">
+      <mat-card-content>
+        <h2>Farm Name: {{ selectedFarm.farm_name }}</h2>
+        <p>{{ selectedFarm.description }}</p>
+        <div class="row">
+          <div class="col-lg-4">
+            <h2>Fram contacts</h2>
+            <p>
+              {{ selectedFarm.contact_email }} <br />
+              {{ selectedFarm.contact_phone }}
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <h2>contact person</h2>
+            <h3>{{ selectedFarm.contact_person }}</h3>
+          </div>
+        </div>
+        <div class="row" color="primary" fxLayout="row">
+          <div class="col-lg-2">
+            <a mat-raised-button routerLink="/Inventory" color="accent"
+              >Farm Inventory</a
+            >
+          </div>
+          <div class="col-lg-2">
+            <a
+              mat-raised-button
+              (click)="navigateToFarmIncomes()"
+              color="accent"
+              >Farm Incomes</a
+            >
+          </div>
+          <div class="col-lg-2">
+            <a
+              mat-raised-button
+              (click)="navigateToFarmExpenses()"
+              color="accent"
+              >Farm Expenses</a
+            >
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

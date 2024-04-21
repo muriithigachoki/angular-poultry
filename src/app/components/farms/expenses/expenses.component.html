@@ -1,0 +1,74 @@
+<mat-card class="mat-elevation-z8">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <mat-form-field>
+        <input
+          [ariaRowSpan]="4"
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="search users"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <a
+        mat-raised-button
+        color="accent"
+        routerLink="/add-expense"
+        style="margin: 2px"
+        >Add Expenses</a
+      >
+    </div>
+  </div>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let expense">{{ expense.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="item">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Item</th>
+      <td mat-cell *matCellDef="let expense">{{ expense.item }}</td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+      <td mat-cell *matCellDef="let expense">{{ expense.amount }}</td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+      <td mat-cell *matCellDef="let expense">{{ expense.date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+      <td mat-cell *matCellDef="let expense">{{ expense.description }}</td>
+    </ng-container>
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef>Update</th>
+      <td mat-cell *matCellDef="let expense">
+        <div>
+          <a
+            mat-raised-button
+            (click)="updateExpense(expense.id)"
+            color="primary"
+            >Update</a
+          >
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let expense">
+        <div>
+          <a mat-raised-button (click)="removeExpense(expense.id)" color="warn"
+            >Delete</a
+          >
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</mat-card>

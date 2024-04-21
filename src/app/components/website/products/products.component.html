@@ -1,0 +1,61 @@
+<div fxLayout="row" fxLayout.gt-sm="row">
+  <div
+    class="category"
+    fxFlex="20%"
+    fxFlex.gt-sm="20%"
+    style="max-height: 400px; overflow-x: auto"
+  >
+    <mat-card>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item class="bg-primary">CATEGORIES</mat-list-item>
+          <mat-list-item *ngFor="let category of categoryList">
+            <!-- Call filterProductsByCategory method when a category is clicked -->
+            <a matLine (click)="filterProductsByCategory(category.id)">{{
+              category.name
+            }}</a>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div
+    class="products"
+    fxLayout="row wrap"
+    fxLayoutGap="5px"
+    fxLayoutAlign="flex-start"
+  >
+    <ng-container *ngFor="let product of productlist">
+      <!-- Display products only if selectedCategory matches product's category or if selectedCategory is undefined -->
+      <div
+        fxFlex="80%"
+        fxFlex.gt-sm="31%"
+        fxLayoutAlign="space-between"
+        class="example-card"
+        *ngIf="!selectedCategory || product.category === selectedCategory"
+      >
+        <mat-card class="card">
+          <mat-card-content>
+            <img [src]="product.image_url" alt="product.name" />
+            <a
+              [title]="product.name + ' details'"
+              [routerLink]="['/products', product.id]"
+              >{{ product.name }}</a
+            >
+            <!-- <mat-card-subtitle>{{ product.category }}</mat-card-subtitle> -->
+            <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
+            <a
+              fxLayout="center"
+              (click)="addToCart(product)"
+              mat-raised-button
+              color="primary"
+            >
+              Add To Cart
+            </a>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </ng-container>
+  </div>
+</div>

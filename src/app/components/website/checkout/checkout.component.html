@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <div fxLayout="row" fxLayout.gt-sm="row">
+    <div fxFlex="50%" fxFlex.gt-sm="45%">
+      <mat-card>
+        <mat-card-content>
+          <form class="example-form" [formGroup]="orderForm">
+            <mat-form-field class="example-full-width">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label> Address </mat-label>
+              <input matInput formControlName="address" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" />
+            </mat-form-field>
+            <mat-card-header>
+              <h1>Lipa Na Mpesa</h1>
+            </mat-card-header>
+            <mat-form-field class="example-full-width">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phone_number" />
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label> Amount </mat-label>
+              <input
+                matInput
+                formControlName="amount"
+                [value]="sumTotalPrices()"
+              />
+            </mat-form-field>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div
+      class="order-summary"
+      fxLayout="row wrap"
+      fxLayoutGap="5px"
+      fxLayoutAlign="flex-start"
+    >
+      <mat-card class="mat-elevation-z8">
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              product Name
+            </th>
+            <td mat-cell *matCellDef="let cartItem">
+              {{ cartItem.name }} * {{ cartItem.quantity }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Total Price
+            </th>
+            <td mat-cell *matCellDef="let cartItem">
+              {{ cartItem.total_price }}
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <div class="row">
+          <div class="total-price">
+            <a mat-raised-button color="primary"
+              >total price: {{ sumTotalPrices() }}</a
+            >
+          </div>
+          <div class="matpagination">
+            <mat-paginator
+              [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons
+            ></mat-paginator>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <div fxlayout="row" fxLayout.gt-sm="row">
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="placeOrder()"
+        type="submit"
+      >
+        Place Order
+      </button>
+    </div>
+  </div>
+</div>

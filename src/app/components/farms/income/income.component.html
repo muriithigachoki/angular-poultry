@@ -1,0 +1,79 @@
+<mat-card class="mat-elevation-z8">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <mat-form-field>
+        <input
+          [ariaRowSpan]="4"
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="search users"
+        />
+      </mat-form-field>
+    </div>
+    <div>
+      <a
+        mat-raised-button
+        color="accent"
+        routerLink="/add-income"
+        style="margin: 2px"
+        >Add Incomes</a
+      >
+    </div>
+  </div>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let income">{{ income.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="source">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Source</th>
+      <td mat-cell *matCellDef="let income">{{ income.source }}</td>
+    </ng-container>
+    <ng-container matColumnDef="sale_date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Sale Date</th>
+      <td mat-cell *matCellDef="let income">{{ income.sale_date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+      <td mat-cell *matCellDef="let income">{{ income.quantity }}</td>
+    </ng-container>
+    <ng-container matColumnDef="amount_per_item">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount Per Item</th>
+      <td mat-cell *matCellDef="let income">{{ income.amount_per_item }}</td>
+    </ng-container>
+    <ng-container matColumnDef="contact_email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Email</th>
+      <td mat-cell *matCellDef="let income">{{ income.contact_email }}</td>
+    </ng-container>
+    <ng-container matColumnDef="total_amount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Amount</th>
+      <td mat-cell *matCellDef="let income">{{ income.total_amount }}</td>
+    </ng-container>
+    <ng-container matColumnDef="update">
+      <th mat-header-cell *matHeaderCellDef>Update</th>
+      <td mat-cell *matCellDef="let income">
+        <div>
+          <a (click)="updateIncome(income.id)" mat-raised-button color="primary"
+            >Update</a
+          >
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let income">
+        <div>
+          <a (click)="removeIncome(income.id)" mat-raised-button color="warn"
+            >Delete</a
+          >
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</mat-card>

@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Add Incomes</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="incomeForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Source</mat-label>
+        <mat-select formControlName="source">
+          <mat-option
+            *ngFor="let option of sourceOptions"
+            [value]="option.value"
+          >
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="incomeForm.get('source')?.errors?.['required']">
+          Source is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label> Sale Date </mat-label>
+        <input matInput formControlName="sale_date" />
+        <mat-error *ngIf="incomeForm.get('sale_date')?.errors?.['required']">
+          Sale Date is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>quantity</mat-label>
+        <input matInput formControlName="quantity" />
+        <mat-error *ngIf="incomeForm.get('quantity')?.errors?.['required']">
+          Quantity is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Amount Per Item</mat-label>
+        <input matInput formControlName="amount_per_item" />
+        <mat-error
+          *ngIf="incomeForm.get('amount_per_item')?.errors?.['required']"
+        >
+          Amount Per Item is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Total Amount</mat-label>
+        <input matInput formControlName="total_amount" />
+        <mat-error *ngIf="incomeForm.get('total_amount')?.errors?.['required']">
+          Total Amount is required
+        </mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="accent">Add</button> |
+        <button mat-raised-button routerLink="/incomes" color="accent">
+          Back to Incomes
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
